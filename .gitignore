@@ -1,0 +1,30 @@
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+
+# Virtual environment
+.venv/
+venv/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Editors
+.vscode/
+
+# Generated outputs
+outputs/*
+!outputs/.gitkeep
+
+# Local test images
+data/sample_images/*
+!data/sample_images/.gitkeep
+
+# Test and coverage cache
+.pytest_cache/
+.coverage
+htmlcov/
