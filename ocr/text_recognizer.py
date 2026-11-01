@@ -30,3 +30,17 @@ def extract_text_with_confidence(image: np.ndarray) -> dict:
             })
 
     return results
+
+def calculate_average_confidence(confidence_data: list[dict]) -> float:
+    """
+    Calculate average OCR confidence across recognized words.
+    """
+    if not confidence_data:
+        return 0.0
+
+    scores = [
+        item["confidence"]
+        for item in confidence_data
+    ]
+
+    return round(sum(scores) / len(scores), 2)
