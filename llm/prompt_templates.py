@@ -93,6 +93,41 @@ nutrition_prompt = ChatPromptTemplate.from_messages([
             be concluded instead of making assumptions.
         16. Avoid prescriptive dietary recommendations
             unless supported by verified guidance.
+        17. When OCR quality information identifies suspicious
+            or low-confidence values, do not treat those values
+            as confirmed. Clearly flag them for manual verification.
+        18. Never silently correct suspicious OCR values.
+        19. Consider OCR validation warnings and review status
+            when interpreting the nutrition information.
+        20. Never infer or guess an uncertain nutrient unit,
+            even when a particular unit seems likely.
+        21. Do not classify nutrients as beneficial, harmful,
+            high, low, excessive or insufficient without
+            verified and applicable reference information.
+        22. Do not compare nutrient amounts against
+            child-specific recommendations unless verified
+            reference values are explicitly provided.
+        23. Do not assume the reference standard behind
+            a displayed Daily Value percentage.
+        24. Explain the general biological role of nutrients
+            without making claims about whether the supplied
+            amount is adequate for a particular child.
+        25. Avoid unnecessary dietary advice about individual
+            nutrients when sufficient context is unavailable.
+        26. Do not use common industry practices or typical
+            nutrition-label formats to infer an uncertain unit.
+        27. When a nutrient amount or unit is uncertain,
+            state only what was extracted and why it needs
+            verification.
+        28. Do not describe a nutrient amount as relatively
+            high, low, excessive, beneficial or concerning
+            without verified reference values.
+        29. Do not recommend limiting, increasing, replacing
+            or avoiding specific nutrients or food categories
+            without verified guidance and sufficient context.
+        30. Practical suggestions should focus on label
+            verification, food variety, balanced eating and
+            consulting qualified professionals when needed.
 
         RESPONSE STYLE:
         - Use simple, accessible language.
@@ -120,6 +155,9 @@ nutrition_prompt = ChatPromptTemplate.from_messages([
 
         NUTRITION INFORMATION:
         {nutrition_data}
+
+        OCR QUALITY INFORMATION:
+        {ocr_quality_info}
 
         CHILD'S AGE:
         {child_age}
@@ -161,10 +199,12 @@ nutrition_prompt = ChatPromptTemplate.from_messages([
 def create_messages(
     nutrition_data,
     child_age="Not provided",
-    serving_size="Not provided"
+    serving_size="Not provided",
+    ocr_quality_info="Not provided"
 ):
     return nutrition_prompt.format_messages(
         nutrition_data=nutrition_data,
         child_age=child_age,
-        serving_size=serving_size
+        serving_size=serving_size,
+        ocr_quality_info=ocr_quality_info
     )

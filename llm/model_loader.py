@@ -15,7 +15,7 @@ def load_llm():
         model=model_name,
         api_key=api_key,
         temperature=0.3,
-        max_tokens=1024
+        max_tokens=2048
     )
 
     return llm
