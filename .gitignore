@@ -28,3 +28,6 @@ data/sample_images/*
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Chroma vector database
+data/vector_store/
